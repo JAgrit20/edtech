@@ -1,0 +1,146 @@
+{% load static %}
+
+<header class="navbar pcoded-header navbar-expand-lg navbar-light">
+  <div class="m-header">
+    <a class="mobile-menu" id="mobile-collapse1" href="javascript:"><span></span></a>
+    <a href="{% url 'index' %}" class="b-brand">
+      <div class="b-bg">
+        <i class="feather icon-trending-up"></i>
+      </div>
+      <span class="b-title">Endeavour Edtech</span>
+    </a>
+  </div>
+  <a class="mobile-menu" id="mobile-header" href="javascript:">
+    <i class="feather icon-more-horizontal"></i>
+  </a>
+  
+      <li class="nav-item ">
+        <div class="card-header">
+          <h5>Course Booker</h5>
+        </div>
+      </li>
+    </ul>
+   
+    
+
+    <ul class="navbar-nav ml-auto">
+      <li>
+        <label>
+          <i class="icon feather icon-sun" id="theme-indicator"></i>
+          <input type="checkbox" id="theme-switch" class="d-none">
+        </label>
+      </li>
+      <li>
+        {% if request.user.is_authenticated  %}
+        <div class="dropdown">
+          <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown" ><i
+              class="icon feather icon-bell"></i></a>
+          <div class="dropdown-menu dropdown-menu-right notification">
+            <div class="noti-head">
+              <h6 class="d-inline-block m-b-10">Notifications</h6>
+              <div class="float-right">
+                <button class="btn btn-outline-danger m-b-5"  href="javascript:">clear all</button>
+              </div>
+            </div>
+            <ul class="noti-body">
+              <li class="n-title">
+                <p class="m-b-0">NEW</p>
+              </li>
+              <li class="notification">
+                <div class="media">
+                  <img class="img-radius" src="{% static 'assets/images/user/avatar-1.jpg' %}" alt="Generic placeholder image">
+                  <div class="media-body">
+                    <p><strong>John Doe</strong><span class="n-time text-muted"><i
+                          class="icon feather icon-user-check m-r-10"></i>Just Now</span></p>
+                    <p>Your class is booked congratulation</p>
+                  </div>
+                </div>
+              </li>
+              <li class="n-title">
+                <p class="m-b-0">EARLIER CLASSES</p>
+              </li>
+              <li class="notification">
+                <div class="media">
+                  <img class="img-radius" src="{% static 'assets/images/user/avatar-1.jpg' %}" alt="Generic placeholder image">
+                  <div class="media-body">
+                    <p><strong>John Doe</strong><span class="n-time text-muted"><i
+                          class="icon feather icon-phone-incoming m-r-10"></i>30 min</span></p>
+                    <p>Your Classes going to start</p>
+                  </div>
+                </div>
+              </li>
+              <li class="notification">
+                <div class="media">
+                  <img class="img-radius" src="{% static 'assets/images/user/avatar-1.jpg' %}" alt="Generic placeholder image">
+                  <div class="media-body">
+                    <p><strong>John Doe</strong><span class="n-time text-muted"><i
+                          class="icon feather icon-phone-off m-r-10"></i>30 min</span></p>
+                    <p>Class Ended</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+         
+          </div>
+        </div>
+      </li>
+      {% endif %}
+      <li>
+        {% if request.user.is_authenticated %}
+        <div class="dropdown drp-user">
+          <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon feather icon-settings"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right profile-notification">
+            <div class="pro-head">
+              <img src="{% static 'assets/images/user/avatar-1.jpg' %}" class="img-radius" alt="User-Profile-Image">
+              <span>{{request.user.username}} <ul>
+                {% for group in user.groups.all %}
+                    <li class="text-c-green">{{ group.name }}</li>
+                {% endfor %}
+            </ul></span>
+            {% endif %}
+              
+            {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+            <a href="{% url 'admin:logout' %}" class="dud-logout" title="Logout">
+            {% else %}
+            <a href="{% url 'logout' %}" class="dud-logout" title="Logout">
+            {% endif %}
+              <i class="feather icon-log-out"></i>
+            </a>
+          {% endif %}
+              
+            </div>
+            {% if request.user.is_authenticated %}
+            <ul class="pro-body">
+              {% comment %} <li><a href="#" class="dropdown-item"><i class="feather icon-settings"></i>
+                  Settings</a></li> {% endcomment %}
+              <li><a href="{% url 'profile' %}" class="dropdown-item"><i class="feather icon-user"></i>
+                  Profile</a></li>
+              {% comment %} <li><a href="#" class="dropdown-item"><i class="feather icon-mail"></i> My
+                  Messages</a></li> {% endcomment %}
+              {% comment %} <li><a href="#" class="dropdown-item"><i class="feather icon-lock"></i> Lock
+                  Screen</a></li> {% endcomment %}
+                 
+              {% endif %}
+              {% if request.user.is_authenticated %}
+              <li>
+                {% if request.user.is_superuser %}
+                <a href="{% url 'admin:password_change' %}" class="dropdown-item">
+                {% else %}
+                <a href="{% url 'password_change' %}" class="dropdown-item">
+                {% endif %}
+                  <i class="feather icon-edit"></i>Change Password
+                </a>
+              </li>
+              {% endif %}
+              
+              
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>

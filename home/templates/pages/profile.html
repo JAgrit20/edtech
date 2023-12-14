@@ -1,0 +1,99 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block content %}
+
+  <!-- [ Main Content ] start -->
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-header">
+          <h5>Edit Info</h5>
+        </div>
+        <form method="POST">
+          {% csrf_token %}
+        <div class="card-block">
+          <div class="row">
+            <div class="col-sm-12 mb-4">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp" value="{{student.email}}" name="email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+            </div>
+            <div class="col-sm-6 mb-4">
+              <div class="form-group">
+                <label for="fn">First Name</label>
+                <input type="text" class="form-control" id="fn" aria-describedby="emailHelp"
+                 value="{{student.first_name}}" name="first_name">
+              </div>
+            </div>
+            <div class="col-sm-6 mb-4">
+              <div class="form-group">
+                <label for="ln">Last Name</label>
+                <input type="text" class="form-control" id="ln" aria-describedby="textHelp"
+                 value="{{student.last_name}}" name="last_name">
+              </div>
+            </div>
+            <div class="col-sm-6 mb-4">
+              <div class="form-group">
+                <label for="ln">Age</label>
+                <input type="text" class="form-control" id="ln" aria-describedby="textHelp"
+                 value="{{student.age}}" name="age">
+              </div>
+            </div>
+            <div class="col-sm-12 mb-4">
+              <div class="form-group">
+                <label for="ln">Phone Number</label>
+                <input type="text" class="form-control" id="ln" aria-describedby="textHelp"
+                 value="{{student.phone_number}}" name="phone_number">
+              </div>
+            </div>
+            {% comment %} <div class="col-sm-12 mb-4">
+              <div class="form-group">
+                <label for="ln">Role</label>
+                <input type="text" class="form-control" id="ln" aria-describedby="textHelp"
+                  placeholder="Role Displayed">
+                  <small id="textHelp" class="form-text text-muted">This shows your role in this organisation
+                    </small> 
+              </div>
+            </div> {% endcomment %}
+            <div class="col-sm-12 mb-4">
+              <div class="form-group">
+                <label for="add">Address</label>
+                <input type="text" class="form-control" id="add" aria-describedby="textHelp"
+                  value={{student.address}} name="address">
+                <small id="addd" class="form-text text-muted">This is your shipments address</small>
+              </div>
+            </div>
+            
+            <div class="col-sm-12 mb-4">
+              <div class="form-group">
+                <label for="abt">About Info</label>
+                <textarea class="form-control" id="abt" name="about_info"  >{{student.about_info}}</textarea>
+              </div>
+            </div>
+
+
+            <div class="col-sm-12 mb-4">
+              <div class="form-group">
+            <button type="submit" class="btn btn-danger">Update</button>
+              </div>
+            </div>
+
+          </form>
+          </div>
+        </div>
+      </div>
+     
+    
+    </div>
+ 
+  </div>
+  <!-- [ Main Content ] end -->
+
+ {% endblock content %}
